@@ -63,7 +63,7 @@ public class MyArchive {
         pw.close();
     }
     public static void writePW(String[] text, File archive){
-        PrintWriter pw = null;
+        PrintWriter pw;
         try {
             pw = new PrintWriter(archive);
         } catch (FileNotFoundException e) {
