@@ -35,14 +35,12 @@ public class MyArchive {
     }
     public static File create(String name, String extension){
         String dirApp = System.getProperty("user.dir");
-        File f = create(name, extension, dirApp);
-        return f;
+        return create(name, extension, dirApp);
     }
     public static File create(String name){
-        File f = create(name, ".txt");
-        return f;
+        return create(name, ".txt");
     }
-    public static void write(String text, File archive){
+    public static void writeFW(String text, File archive){
         try {
             FileWriter writer = new FileWriter(archive, true);
             BufferedWriter w = new BufferedWriter(writer);
@@ -54,20 +52,34 @@ public class MyArchive {
             e.printStackTrace();
         }
     }
-    public static void write(String text, File archive){
-        PrintWriter pw = new PrintWriter(archive);
+    public static void writePW(String text, File archive){
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(archive);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         pw.write(text);
         pw.close();
     }
-    public static void write(String[] text, File archive){
-        PrintWriter pw = new PrintWriter(archive);
+    public static void writePW(String[] text, File archive){
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(archive);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         for (String element: text) {
             pw.write(element);
         }
         pw.close();
     }
     public static int countLines(File archive){
-        scan = new Scanner(archive);
+        try {
+            scan = new Scanner(archive);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         int count=0;
         while (scan.hasNextLine()){
             count++;
@@ -76,7 +88,11 @@ public class MyArchive {
         return count;
     }
     public static String[] read(File archive){
-        scan = new Scanner(archive);
+        try {
+            scan = new Scanner(archive);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         int count=0;
         String[] text = new String[countLines(archive)];
         while (scan.hasNextLine()){
@@ -85,5 +101,4 @@ public class MyArchive {
         scan.close();
         return text;
     }
-    public
 }
