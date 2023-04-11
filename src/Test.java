@@ -8,6 +8,6 @@ public class Test {
      * @param args
      */
     public static void main(String[] args) {
-        MyStack stack = new MyStack(20);
+
     }
 }
