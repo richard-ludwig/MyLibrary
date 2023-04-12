@@ -1,3 +1,9 @@
+/**
+ * @author Richard Ludwig
+ * @version 0.1
+ * <h2>Classe para criação de listas duplamente encadeadas</h2>
+ * @param <T> Define a tipagem utilizada na lista.
+ */
 public class MyDoublyLinkedList<T>{
     private Node header;
     private Node trailer;
