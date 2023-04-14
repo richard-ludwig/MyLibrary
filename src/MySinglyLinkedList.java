@@ -9,7 +9,7 @@ public class MySinglyLinkedList<T> {
         public Node next;
         public Node(T e){
             this.element=e;
-            next=null;
+            this.next=null;
         }
         public Node(T e, Node n){
             this.element=e;
@@ -21,31 +21,29 @@ public class MySinglyLinkedList<T> {
     private int count;
 
     public MySinglyLinkedList(){
-        head=null;
-        tail=null;
-        count=0;
+        this.head=null;
+        this.tail=null;
+        this.count=0;
     }
     public void add(T e){
         Node n = new Node(e);
         if (count == 0) {
             head=n;
-            count++;
         }
         else {
             tail.next=n;
         }
         tail=n;
-        n.next=null;
+        count++;
     }
     public void add(T e, int index){
-        Node n = new Node(e);
         if(index<0 || index>size()){
             throw new IndexOutOfBoundsException();
         }
+        Node n = new Node(e);
         if (index==count) {
             tail.next=n;
             tail=n;
-            n.next=null;
         }
         else if (index==0) {
             if (head == null) {
@@ -67,15 +65,26 @@ public class MySinglyLinkedList<T> {
     }
 
     public boolean isEmpty(){
-        return head == null;
+        return (head == null);
     }
     public int size(){
         return count;
     }
     public void clear(){
-        head=null;
-        tail=null;
-        count=0;
+        this.head=null;
+        this.tail=null;
+        this.count=0;
+    }
+    public T set(int index, T e){
+        if((index<0)||(index>=count)){
+            throw new IndexOutOfBoundsException();
+        }
+        if(index == count-1){
+            T n = tail.element;
+            tail.element=e;
+            return n;
+        }
+        Node aux=head;
     }
     public T get(int index){
         if((index<0)||(index>=count)){

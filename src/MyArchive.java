@@ -4,7 +4,8 @@ import java.util.Scanner;
 /**
  * @author Richard Ludwig
  * @version 1.0
- * Classe com métodos de manipulação de arquivos e pastas.
+ *
+ * <h2>Classe com métodos de manipulação de arquivos e pastas.</h2>
  */
 public class MyArchive {
     private static Scanner scan;
