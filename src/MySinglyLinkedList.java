@@ -3,7 +3,9 @@
  * @version 0.1
  */
 public class MySinglyLinkedList<T> {
-
+    private Node head;
+    private Node tail;
+    private int count;
     private class Node{
         public T element;
         public Node next;
@@ -16,10 +18,6 @@ public class MySinglyLinkedList<T> {
             this.next=n;
         }
     }
-    private Node head;
-    private Node tail;
-    private int count;
-
     public MySinglyLinkedList(){
         this.head=null;
         this.tail=null;
@@ -27,7 +25,7 @@ public class MySinglyLinkedList<T> {
     }
     public void add(T e){
         Node n = new Node(e);
-        if (count == 0) {
+        if (isEmpty()) {
             head=n;
         }
         else {
@@ -41,15 +39,15 @@ public class MySinglyLinkedList<T> {
             throw new IndexOutOfBoundsException();
         }
         Node n = new Node(e);
-        if (index==count) {
+        if (index==size()) {
             tail.next=n;
             tail=n;
         }
         else if (index==0) {
-            if (head == null) {
+            if (isEmpty()) {
                 tail = n;
-                n.next = null;
-            } else {
+            }
+            else {
                 n.next = head;
             }
             head=n;
@@ -76,28 +74,34 @@ public class MySinglyLinkedList<T> {
         this.count=0;
     }
     public T set(int index, T e){
-        if((index<0)||(index>=count)){
+        if((index<0)||(index>=size())){
             throw new IndexOutOfBoundsException();
         }
-        if(index == count-1){
-            T n = tail.element;
+        if(index == size()-1){
+            T t = tail.element;
             tail.element=e;
-            return n;
+            return t;
         }
         Node aux=head;
+        for (int i =0; i<index; i++){
+            aux=aux.next;
+        }
+        T t = aux.element;
+        aux.element=e;
+        return t;
     }
     public T get(int index){
-        if((index<0)||(index>=count)){
+        if((index<0)||(index>=size())){
             throw new IndexOutOfBoundsException();
         }
-        if(index==count-1){
+        if(index==size()-1){
             return tail.element;
         }
         Node aux = head;
-        int a = 0;
-        while (a<index){
+        int c = 0;
+        while (c<index){
             aux = aux.next;
-            a++;
+            c++;
         }
         return aux.element;
     }
@@ -106,7 +110,7 @@ public class MySinglyLinkedList<T> {
     public String toString() {
         StringBuilder s = new StringBuilder();
         Node aux = head;
-        if(count==0){
+        if(isEmpty()){
             s.append("Lista Vazia");
             return s.toString();
         }
@@ -117,21 +121,13 @@ public class MySinglyLinkedList<T> {
         }
         return s.toString();
     }
-    public void middleInsert(int index, T element){
-        Node bef=head;
-        for(int i=0; i<index; i++){
-            bef = bef.next;
-        }
-    }
     public Integer indexOf(T e){
         Node aux =head;
         for(int i=0; i<count; i++){
             if (aux.element.equals(e)){
                 return i;
             }
-            else {
-                aux=aux.next;
-            }
+            aux=aux.next;
         }
         return null;
     }
@@ -145,12 +141,11 @@ public class MySinglyLinkedList<T> {
         return aux.element;
     }
     public boolean remove(T element){
-        Node auxB, auxA=head;
         if(isEmpty()){
             return false;
         }
         if (head.element.equals(element)){
-            if (count==1){
+            if (size()==1){
                 clear();
             }
             else {
@@ -159,20 +154,23 @@ public class MySinglyLinkedList<T> {
             }
             return true;
         }
-        for(int i=0; i<count;i++){
-            if (head.next == null){
-                System.out.println("Elemento não existe!");
-                return false;
-            }
-            if(head.next.element.equals(element)){
-                auxA=head.next;
-                head.next=auxA.next;
+        Node aux = head.next;
+        Node ant = head;
+        while (aux != null) {
+            if (aux.element.equals(element)) {
+                if (aux == tail) {
+                    tail = ant;
+                    tail.next = null;
+                }
+                else {
+                    ant.next = aux.next;
+                }
                 count--;
                 return true;
             }
-            auxA=auxA.next;
+            aux = aux.next;
+            ant = ant.next;
         }
-        auxB=auxA.next;
-        auxA.next=auxB.next;
+        return false;
     }
 }
