@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -6,15 +6,7 @@ import java.util.Scanner;
  * @version 1.0
  * Classe com métodos de manipulação de vetores(Arrays)
  */
-public class MyVector {
-    /*
-    Métodos implementados:
-    fill();
-    sum();
-    media();
-    print();
-    write();
-     */
+public class MyVector<T> {
     public static int[] write(Scanner s, int[] a) {
         int[] b = new int[a.length];
         for (int i = 0; i < a.length; i++) {
@@ -217,14 +209,8 @@ public class MyVector {
         }
         System.out.println();
     }
-
-
-
-
     /**
-     * <h1>Algoritmos e Estruturas de Dados</h1>
-     * <br>
-     * <h3>Algoritmos de ordenação:</h3>
+     * <h1>Algoritmos de ordenação</h1>
      * <br>
      * Bubble Sort
      * @param a Uma lista de inteiros
@@ -245,7 +231,6 @@ public class MyVector {
             }
         }
     }
-
     /**
      * Selection Sort
      * @param a Uma lista de inteiros
@@ -265,7 +250,6 @@ public class MyVector {
             }
         }
     }
-
     /**
      * Quick Sort
      * @param a Uma lista de inteiros
@@ -279,7 +263,6 @@ public class MyVector {
             quickSort(a, indexPivot + 1, end);
         }
     }
-
     /**
      * Partição do Quick Sort
      * @param a Uma lista de inteiros
@@ -310,10 +293,9 @@ public class MyVector {
         a[e] = pivot;
         return e;
     }
-
     /**
      * Isertion Sort
-     * @param a Uma lista de inteiros
+     * @param a Lista de inteiros
      */
     public static void insertionSort(int[] a) {
         int key;
@@ -325,5 +307,43 @@ public class MyVector {
             }
             a[j + 1] = key;
         }
+    }
+    /**
+     * <h1>Conversão de Estrutura de dados</h1>
+     * <br>
+     * Conversão para ArrayList
+     * @param a Vetor de qualquer tipo
+     * @return ArrayList de qualquer tipo
+     */
+    public ArrayList<T> toArrayList(T[] a){
+        ArrayList<T> result = new ArrayList<>();
+        for(T element : a){
+            result.add(element);
+        }
+        return result;
+    }
+    /**
+     * Conversão para pilha
+     * @param a Vetor de qualquer tipo
+     * @return Pilha de qualquer tipo
+     */
+    public MyStack<T> toStack(T[] a){
+        MyStack<T> result = new MyStack<>();
+        for(T element : a){
+            result.push(element);
+        }
+        return result;
+    }
+    /**
+     * Conversão para fila
+     * @param a Vetor de qualquer tipo
+     * @return Fila de qualquer tipo
+     */
+    public MyQueue<T> toQueue(T[] a){
+        MyQueue<T> result = new MyQueue<>();
+        for(T element : a){
+            result.enqueue(element);
+        }
+        return result;
     }
 }

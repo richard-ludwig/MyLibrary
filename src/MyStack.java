@@ -1,21 +1,23 @@
+import MyExceptions.FullStackException;
+
+import java.util.ArrayList;
+
 /**
  * @author Richard Ludwig
  * @version 1.0
  */
-public class MyStack {
-    private Integer[] stack;
-    private int count;
-    private int stackSize;
-    public MyStack(int t){
-        stackSize=t;
-        count = 0;
-        stack = new Integer[t];
-        for (Integer element:stack) {
-            element=null;
-        }
+public class MyStack<T> {
+    private ArrayList<T> stack;
+    private int count=10;
+    public MyStack(int maxTam){
+        count=maxTam;
+        stack=new ArrayList<>();
+    }
+    public MyStack(){
+        stack=new ArrayList<>();
     }
     public boolean isEmpty(){
-        if(count==0){
+        if(stack.isEmpty()){
             return true;
         }
         else{
@@ -23,44 +25,39 @@ public class MyStack {
         }
     }
     public int size(){
-        return count;
+        return stack.size();
     }
-    public Integer top(){
+    public T top(){
         if (isEmpty()){
             System.out.println("Pilha vazia!");
             return null;
         }
         else {
-            return stack[count-1];
+            return stack.get(size()-1);
         }
     }
-    public Integer pop(){
+    public T pop(){
         if (isEmpty()){
             System.out.println("Pilha vazia");
             return null;
         }
         else {
-            Integer a = stack[count-1];
-            stack[count-1]=null;
-            count--;
+            T a = stack.get(0);
+            stack.remove(0);
             return a;
         }
     }
     public void clear(){
         if(!isEmpty()){
-            count=0;
-            for (Integer element:stack) {
-                element=null;
-            }
+            stack.clear();
         }
     }
-    public void push(Integer e){
-        if(count<stackSize){
-            count++;
-            stack[count-1]=e;
+    public void push(T element){
+        if(size()+1>count){
+            throw new FullStackException("Pilha cheia!");
         }
         else {
-            System.out.println("Pilha cheia!");
+            stack.add(0, element);
         }
     }
 }

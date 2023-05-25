@@ -1,30 +1,51 @@
-import java.util.Queue;
+import MyExceptions.EmptyQueueException;
+import MyExceptions.FullQueueException;
 
-public class MyQueue {
-    private Integer[] queue;
-    private int count;
-    private int queueSize;
+import java.util.ArrayList;
 
-    public MyQueue(int t){
-        queue = new Integer[t];
-        count=0;
-        queueSize=t;
+public class MyQueue<T> {
+    private ArrayList<T> queue;
+    private int count=10;
+
+    public MyQueue(int maxTam){
+        this.count=maxTam;
+        this.queue = new ArrayList<>();
+    }
+    public MyQueue(){
+        this.queue=new ArrayList<>();
     }
     public boolean isEmpty(){
-        if(count==0){
+        if(queue.isEmpty()){
             return true;
         }
         else{
             return false;
         }
     }
-    public void enqueue(Integer e){
-        if(count<queueSize){
-            count++;
-            queue[count-1]=e;
+    public void enqueue(T element){
+        if(size()+1>count){
+            throw new FullQueueException("Fila cheia!");
         }
         else {
-            System.out.println("Fila cheia!");
+            queue.add(size()-1, element);
         }
+    }
+    public T dequeue(){
+        if (isEmpty()){
+            throw new EmptyQueueException("Fila vazia!");
+        }
+        else {
+            T a = queue.get(0);
+            queue.remove(0);
+            return a;
+        }
+    }
+    public void clear(){
+        if(!isEmpty()){
+            queue.clear();
+        }
+    }
+    public int size(){
+        return queue.size();
     }
 }
