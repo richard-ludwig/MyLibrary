@@ -7,13 +7,13 @@ public class MySinglyLinkedList<T> {
     private class Node{
         public T element;
         public Node next;
-        public Node(T e){
-            this.element=e;
+        public Node(T element){
+            this.element=element;
             this.next=null;
         }
-        public Node(T e, Node n){
-            this.element=e;
-            this.next=n;
+        public Node(T element, Node node){
+            this.element=element;
+            this.next=node;
         }
     }
     private Node head;
@@ -41,7 +41,7 @@ public class MySinglyLinkedList<T> {
             throw new IndexOutOfBoundsException();
         }
         Node n = new Node(e);
-        if (index==count) {
+        if (index==size()) {
             tail.next=n;
             tail=n;
         }
@@ -55,7 +55,7 @@ public class MySinglyLinkedList<T> {
             head=n;
         }
         else {
-            Node before =head;
+            Node before=head;
             for (int i =0; i<index-1;i++){
                 before=before.next;
             }
@@ -75,16 +75,19 @@ public class MySinglyLinkedList<T> {
         this.tail=null;
         this.count=0;
     }
-    public T set(int index, T e){
+    public void set(int index, T element){
         if((index<0)||(index>=count)){
             throw new IndexOutOfBoundsException();
         }
         if(index == count-1){
             T n = tail.element;
-            tail.element=e;
-            return n;
+            tail.element=element;
         }
-        Node aux=head;
+        Node aux = head;
+        for (int i=0; i<index; i++)
+            aux = aux.next;
+        T a = aux.element;
+        aux.element = element;
     }
     public T get(int index){
         if((index<0)||(index>=count)){
@@ -101,7 +104,6 @@ public class MySinglyLinkedList<T> {
         }
         return aux.element;
     }
-
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
@@ -117,12 +119,6 @@ public class MySinglyLinkedList<T> {
         }
         return s.toString();
     }
-    public void middleInsert(int index, T element){
-        Node bef=head;
-        for(int i=0; i<index; i++){
-            bef = bef.next;
-        }
-    }
     public Integer indexOf(T e){
         Node aux =head;
         for(int i=0; i<count; i++){
@@ -135,28 +131,39 @@ public class MySinglyLinkedList<T> {
         }
         return null;
     }
-    public T removeByIndex(int index){
+    public T remove(int index){
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException("Índice Inválido");
+        }
+        if (index==0) {
+            T e = head.element;
+            head = head.next;
+            if (size()==1) {
+                tail = null;
+            }
+            count--;
+            return e;
+        }
         Node before=head;
         for(int i =0; i<index-1;i++){
             before=before.next;
         }
         Node aux = before.next;
         before.next=aux.next;
+        count--;
         return aux.element;
     }
-    public boolean remove(T element){
+    public boolean removeFirstOccurence(T element){
         Node auxB, auxA=head;
         if(isEmpty()){
             return false;
         }
         if (head.element.equals(element)){
-            if (count==1){
-                clear();
+            head = head.next;
+            if (size()==1){
+                tail=null;
             }
-            else {
-                head=head.next;
-                count--;
-            }
+            count--;
             return true;
         }
         for(int i=0; i<count;i++){
@@ -174,5 +181,20 @@ public class MySinglyLinkedList<T> {
         }
         auxB=auxA.next;
         auxA.next=auxB.next;
+    }
+    private Node getNodeByIndex(int index) {
+        if ((index < 0) || (index >= size())) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index == size()-1) {
+            return tail;
+        }
+        Node aux = head;
+        int a = 0;
+        while (a<index) {
+            aux = aux.next;
+            a++;
+        }
+        return aux;
     }
 }

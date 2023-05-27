@@ -5,9 +5,13 @@ import java.util.ArrayList;
 
 public class MyQueue<T> {
     private ArrayList<T> queue;
-    private int count=10;
+    private int count=0;
 
     public MyQueue(int maxTam){
+        this.count=maxTam;
+        this.queue = new ArrayList<>();
+    }
+    public MyQueue(int maxTam, boolean allow){
         this.count=maxTam;
         this.queue = new ArrayList<>();
     }
@@ -23,7 +27,7 @@ public class MyQueue<T> {
         }
     }
     public void enqueue(T element){
-        if(size()+1>count){
+        if(count!=0 && size()+1>count){
             throw new FullQueueException("Fila cheia!");
         }
         else {
