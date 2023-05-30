@@ -181,6 +181,7 @@ public class MySinglyLinkedList<T> {
         }
         auxB=auxA.next;
         auxA.next=auxB.next;
+        return true;
     }
     private Node getNodeByIndex(int index) {
         if ((index < 0) || (index >= size())) {

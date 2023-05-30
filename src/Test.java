@@ -8,7 +8,7 @@ public class Test {
      * @param args
      */
     public static void main(String[] args) {
-        MyGUI m = new MyGUI();
+        MyGUI m = new MyGUI(0);
         m.createFrame("App");
     }
 }
