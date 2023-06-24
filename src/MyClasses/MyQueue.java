@@ -1,3 +1,5 @@
+package MyClasses;
+
 import MyExceptions.EmptyQueueException;
 import MyExceptions.FullQueueException;
 

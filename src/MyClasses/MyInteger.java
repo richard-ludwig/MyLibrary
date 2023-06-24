@@ -1,3 +1,5 @@
+package MyClasses;
+
 /**
  * @author Richard Ludwig
  * @version 1.0

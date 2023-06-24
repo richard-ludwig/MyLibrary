@@ -1,3 +1,5 @@
+package MyClasses;
+
 import java.util.Scanner;
 
 /**

@@ -1,3 +1,5 @@
+package MyClasses;
+
 import MyExceptions.FullStackException;
 
 import java.util.ArrayList;

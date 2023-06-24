@@ -1,3 +1,5 @@
+package MyClasses;
+
 public class MyVar {
     private int i;
     private String s;

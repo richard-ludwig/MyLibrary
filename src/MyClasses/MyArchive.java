@@ -1,4 +1,7 @@
+package MyClasses;
+
 import java.io.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,7 +18,6 @@ public class MyArchive {
     private static FileWriter fw;
     private static BufferedReader br;
     private static BufferedWriter bw;
-
 
     public static File create(String name, String extension, String directory){
         File dir;
@@ -127,5 +129,14 @@ public class MyArchive {
             throw new RuntimeException(e);
         }
         return text;
+    }
+    public static File getFile(String pathname){
+        return new File(System.getProperty("user.dir")+pathname);
+    }
+    public static File getFile(Path path){
+        return path.toFile();
+    }
+    public static ArrayList<ArrayList<String>> getCSV(File fileCSV, boolean hasTitle, String contentSeparator, boolean removeTitle){
+        return new MyCSV(fileCSV, hasTitle, contentSeparator).toBidimensionalArrayList(removeTitle);
     }
 }

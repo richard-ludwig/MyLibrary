@@ -1,9 +1,10 @@
+package MyClasses;
+
 /**
  * @author Richard Ludwig
  * @version 0.1
  */
 public class MySinglyLinkedList<T> {
-
     private class Node{
         public T element;
         public Node next;
@@ -63,7 +64,6 @@ public class MySinglyLinkedList<T> {
             before.next=n;
         }
     }
-
     public boolean isEmpty(){
         return (head == null);
     }
@@ -183,7 +183,7 @@ public class MySinglyLinkedList<T> {
         auxA.next=auxB.next;
         return true;
     }
-    private Node getNodeByIndex(int index) {
+    private Node getNode(int index) {
         if ((index < 0) || (index >= size())) {
             throw new IndexOutOfBoundsException();
         }
