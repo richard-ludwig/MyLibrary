@@ -4,7 +4,6 @@ import java.io.*;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 /**
  * @author Richard Ludwig
  * @version 2.0
@@ -18,7 +17,6 @@ public class MyArchive {
     private static FileWriter fw;
     private static BufferedReader br;
     private static BufferedWriter bw;
-
     public static File create(String name, String extension, String directory){
         File dir;
         if(directory.equals("home")){

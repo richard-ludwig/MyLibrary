@@ -55,7 +55,7 @@ public class MyFrame extends JFrame{
         panels.previous().setVisible(true);
     }
     public void addPanel(MyPanel panel){
-        MyPanel p = new MyPanel(new MyTheme(0),  )
+        MyPanel p = new MyPanel(new MyTheme(0),  );
     }
     public void removeTitleBar(){
         frame.setUndecorated(true);
