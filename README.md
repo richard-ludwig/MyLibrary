@@ -13,6 +13,8 @@ Initially the project aims to complete the library in the Java language, extendi
 <li>MyMatrix</li>
 <li>MyVar</li>
 <li>MyArchive</li>
+<li>MyCSV</li>
+<li>MyBinaryTree</li>
 <li>MyQueue</li>
 <li>MyStack</li>
 <li>MySinglyLinkedList</li>
