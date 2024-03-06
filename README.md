@@ -24,4 +24,4 @@ Initially the project aims to complete the library in the Java language, extendi
 </ol>
 
 <p>Next languages to be implemented:
-Python, JavaScript, PHP, Swift and Kotlin.</p>
+Python, JavaScript, C++, C#, PHP, Swift and Kotlin.</p>
