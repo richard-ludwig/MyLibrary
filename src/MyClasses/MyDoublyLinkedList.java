@@ -12,15 +12,17 @@ import java.util.ArrayList;
  */
 public class MyDoublyLinkedList<T>{
 
-        // Referencia para o sentinela de inicio da lista encadeada.
+        // Referência para o sentinela de início da lista.
         private Node header;
+        // Permite que valores repetidos possam ser inseridos na lista.
         private boolean allowDuplicity;
-        // Referencia para o sentinela de fim da lista encadeada.
+        // Referência para o sentinela de fim da lista.
         private Node trailer;
-        // Referencia que aponta para uma posicao corrente da lista
+        // Referência para uma posição corrente da lista.
         private Node current;
-        // Contador do numero de elementos da lista.
+        // Contador de elementos da lista.
         private int count;
+        // Tamanho máximo que uma dada lista pode comportar.
         private int maxSize;
 
         /**
